@@ -109,7 +109,7 @@
                             parent.resetHeaders();
                             parent.resetSession();
                             // this mean unauthorized, go back to login page
-                            window.location.href = $Constants.CONTEXT_PATH;
+                            window.location.href = parent.redirectUrl;
                         }
                     }
                 });
@@ -186,7 +186,7 @@
                 });
 
                 /* UNCOMMENT TO TEST - COMMENT ALL $ajax above to
-                this.token = "eyJ0eXAiOiJKV1QiLA0KICJhbGciOiJIUzI1NiJ9";
+                this.token = "JhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjEzODY4OTkxMzEsImlzcyI6ImppcmE6MTU0ODk1OTUiLCJxc2giOiI4MDYzZmY0Y2ExZTQxZGY3YmM5MGM4YWI2ZDBmNjIwN2Q0OTFjZjZkYWQ3YzY2ZWE3OTdiNDYxNGI3MTkyMmU5IiwiaWF0IjoxMzg2ODk4OTUxfQ.uKqU9dTB6gKwG6jQCuXYAiMNdfNRw98Hw_IWuA5MaMo";
                 parent.setHeaders();//set token to header
                 parent.setSession();//save token to sessionStorage and set auth to true
                 debugger;//check   the SessionStorage on chrome debugger => Resource => Session Storage
@@ -211,7 +211,7 @@
                 var deferred = new jQuery.Deferred();
                 $.ajax({
                     type: "GET",//Access-Control-Request-Method:
-                    url: this.options.serverUrl + this.options.loginOutUrl,
+                    url: this.options.serverUrl + this.options.logoutUrl,
                     processData: true,
                 }).done(function (resp) {
                     console.log('logout success...');
