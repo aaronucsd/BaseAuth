@@ -25,7 +25,7 @@
     /**
      * @lends module: BaseAuth
      */
-    ctx.services.BaseAuth = ctx.services.BaseAuth || function(){
+    ctx.services.BaseAuth = ctx.services.BaseAuth || function(opts){
 
         return {
           /**
@@ -37,17 +37,17 @@
               * @type {String|URL}
               * @description Your backend server URL to do authentication from.
               */
-              serverUrl: "http://localhost:8081",
+              serverUrl: opts.serverUrl || "http://localhost:8081",
               /**
                * @type {String|URL}
                * @description Your backend server URL to do authentication from.
                */
-              loginUrl: "/api/auth/login",
+              loginUrl: opts.loginUrl || "/api/auth/login",
                /**
                 * @type {String|URL}
                 * @description Your backend server URL to do authentication from.
                 */
-              logoutUrl: "/api/auth/logout"
+              logoutUrl: opts.logoutUrl ||  "/api/auth/logout"
            },
           /**
            * @type {String}
@@ -190,7 +190,7 @@
                 parent.setHeaders();//set token to header
                 parent.setSession();//save token to sessionStorage and set auth to true
                 debugger;//check   the SessionStorage on chrome debugger => Resource => Session Storage
-                 */
+                */
                 return deferred.promise();
             },
             /**
@@ -230,7 +230,7 @@
                 });
 
 
-                /* UNCOMMENT TO TEST - COMMENT ALL $ajax above to
+                /* UNCOMMENT TO HARD TEST - COMMENT ALL $ajax above to
                   parent.resetHeaders();//clear token from header
                   parent.resetSession();//clean the session
                   debugger;//check   the SessionStorage on chrome debugger => Resource => Session Storage
@@ -269,6 +269,13 @@
              */
             getToken: function () {
                 return this.token;
+            },
+            /**
+             * @description Returns current server url
+             * @returns {String}
+             */
+            getServerUrl: function () {
+                return this.options.serverUrl;
             }
           };
       };
@@ -283,9 +290,10 @@ var oneAuth = new window.company.services.BaseAuth({
 console.log(oneAuth.isAuthenticated());
 console.log(oneAuth.getToken());
 
-console.log(oneAuth.login({username: "longh",password: "password"});//mock login
+console.log(oneAuth.login({username: "longh",password: "password"}));//mock login
 console.log(oneAuth.isAuthenticated());
 console.log(oneAuth.getToken());
+console.log(oneAuth.getServerUrl());
 
 //console.log(oneAuth.logout());//mock logout
 //console.log(oneAuth.isAuthenticated());
