@@ -282,7 +282,7 @@
 
 })(window.company = window.company || {});
 
-////UNCOMMENT BELOW TO TEST: for global access from window, and namespace access
+/*//UNCOMMENT BELOW TO TEST: for global access from window, and namespace access
 var oneAuth = new window.company.services.BaseAuth({
      serverUrl: "http://localhost:8081"
    });
@@ -295,6 +295,7 @@ console.log(oneAuth.isAuthenticated());
 console.log(oneAuth.getToken());
 console.log(oneAuth.getServerUrl());
 
-//console.log(oneAuth.logout());//mock logout
-//console.log(oneAuth.isAuthenticated());
-//console.log(oneAuth.getToken());
+console.log(oneAuth.logout());//mock logout
+console.log(oneAuth.isAuthenticated());
+console.log(oneAuth.getToken());
+*/
